@@ -1,7 +1,7 @@
 # include <stdio.h>
 
 void create_board(int pin[][4]) {
-	int i;
+    int i;
 	int j;
 	int randnum;
 	int auxpin[8]={0,0,0,0,0,0,0,0};	
@@ -31,8 +31,7 @@ void show_board(int pin[][4]) {
 	}	
 }
  
-int main()
-{
+int main() {
 	int x=4;
 	int y=4;
 	int table[x][y];

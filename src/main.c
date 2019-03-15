@@ -1,10 +1,12 @@
 # include <stdio.h>
+# include <stdlib.h> 
+# include <stdbool.h>
 
 void create_board(int pin[][4]) {
-    int i;
+	int i;
 	int j;
 	int randnum;
-	int auxpin[8]={0,0,0,0,0,0,0,0};	
+	int auxpin[8] = {0,0,0,0,0,0,0,0};	
 
 	for (i=0; i<4; i++){
 		printf("\n");
@@ -20,23 +22,73 @@ void create_board(int pin[][4]) {
 	}	
 }
 
-void show_board(int pin[][4]) {
-	int i=0;
-	int j=0;
-	for (i=0; i<4; i++) {
+
+// Itaterare in the random number table to display the numbers
+void show_board(char table[][4]) {
+	int x=0;
+	int y=0;
+	for (x=0; x<4; x++){
 		printf("\n");
-		for (j=0; j<4; j++) {
-			printf("%d", pin[i][j]);
+		for (y=0; y<4; y++){
+			printf("%c", table[x][y]);
 		}
-	}	
+	}
+	printf("\n");
+}
+
+void select_pair(int pin[][4], char tablechar[][4], int *correct) {
+	int correctcout = 0;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+	int l = 0;
+	int x = 0;
+	int y = 0;
+	bool exitnow = false;
+	while (correctcout <= 16 && exitnow == false) {
+		printf("Define the first pair (eg: 1 2 or 9 9 to exit): ");
+		scanf("%d %d",&i,&j);
+		if (i==9 && j==9) {
+			exitnow = true;
+		} else {
+			printf("Define the second pair:");
+			scanf("%d%d",&k,&l);
+			if (pin[i][j] == pin[k][l]) {
+				tablechar[i][j] = pin[i][j] + '0';
+				tablechar[k][l] = pin[i][j] + '0';
+				system("cls");
+				printf("Correct!");
+				correctcout++;
+				show_board(tablechar);
+			} else {
+				printf("Wrong answer\n");
+			}
+		*correct = correctcout;
+		}
+	}
 }
  
 int main() {
-	int x=4;
-	int y=4;
-	int table[x][y];
+	srand(time(NULL));
+	int x = 4;
+	int y = 4;
+	int k = 4;
+	int l = 4;
+	int correct = 0;
+	int table[x][y];  // Create the table for the random number
+	char tablechar[x][y]; // Create a "blank" table to store the correct values
+	for (k=0; k<4; k++){
+		for (l=0; l<4; l++){
+			tablechar[k][l]='_';
+		}
+	}
 	create_board(table);
-	printf("\n");
-	show_board(table);
+	printf("\n\n");
+	select_pair(table, tablechar, &correct); 
+	if (correct == 16) {
+		printf ("You won!");
+	} else {
+		printf ("You exited the game with %d correct answers", correct);
+	}
 	return 0;
 }

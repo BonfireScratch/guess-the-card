@@ -1,5 +1,5 @@
 # guess-the-card
-A WIP game I'm working on
+A WIP game I'm working on in order to learn C
 
 # Rules:
 Random numbers between 0 and 9 will be added to a random spot on 4x4 board

@@ -1,6 +1,6 @@
-# include <stdio.h>
-# include <stdlib.h> 
-# include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h> 
+#include <stdbool.h>
 
 void create_board(int pin[][4]) {
 	int i;
@@ -9,29 +9,26 @@ void create_board(int pin[][4]) {
 	int auxpin[8] = {0,0,0,0,0,0,0,0};	
 
 	for (i=0; i<4; i++){
-		printf("\n");
 		for (j=0; j<4; j++) {
-			randnum = (rand()%8+1);
+			randnum = (rand() % 8 + 1);
 			while (auxpin[randnum-1] >= 2) {
-				randnum = (rand()%8+1);
+				randnum = (rand() %8 + 1);
 			}
-			auxpin[randnum-1]++;
-			printf("%d", randnum);
+			auxpin[randnum - 1]++;
 			pin[i][j] = randnum;
 		}
 	}	
 }
 
-
-// Itaterare in the random number table to display the numbers
+// Itaterate in the random number table to display the numbers
 void show_board(char table[][4]) {
 	int x=0;
 	int y=0;
 	for (x=0; x<4; x++){
-		printf("\n");
 		for (y=0; y<4; y++){
 			printf("%c", table[x][y]);
 		}
+		printf("\n");
 	}
 	printf("\n");
 }
@@ -46,24 +43,24 @@ void select_pair(int pin[][4], char tablechar[][4], int *correct) {
 	int y = 0;
 	bool exitnow = false;
 	while (correctcout <= 16 && exitnow == false) {
-		printf("Define the first pair (eg: 1 2 or 9 9 to exit): ");
+		printf("Select the first pair (eg: 1 2 or 9 9 to exit): ");
 		scanf("%d %d",&i,&j);
-		if (i==9 && j==9) {
+		if (i == 9 && j == 9) {
 			exitnow = true;
 		} else {
-			printf("Define the second pair:");
+			printf("Select the second pair: ");
 			scanf("%d%d",&k,&l);
 			if (pin[i][j] == pin[k][l]) {
 				tablechar[i][j] = pin[i][j] + '0';
 				tablechar[k][l] = pin[i][j] + '0';
 				system("cls");
-				printf("Correct!");
+				printf("Correct!\n");
 				correctcout++;
 				show_board(tablechar);
 			} else {
 				printf("Wrong answer\n");
 			}
-		*correct = correctcout;
+			*correct = correctcout;
 		}
 	}
 }
@@ -80,10 +77,12 @@ int main() {
 	for (k=0; k<4; k++){
 		for (l=0; l<4; l++){
 			tablechar[k][l]='_';
+			printf("_");
 		}
+		printf("\n");
 	}
+	printf("\n");
 	create_board(table);
-	printf("\n\n");
 	select_pair(table, tablechar, &correct); 
 	if (correct == 16) {
 		printf ("You won!");

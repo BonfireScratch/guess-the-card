@@ -1,29 +1,29 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
+#include <stdlib.h> 
 
 int main() {
-	int num;
-	int smaller = 0;
-	int larger = 0;
-	int guess;
-	
 	srand(time(NULL));
-	num = rand() % 201 - 100;
-	printf("Enter an integer between -100 to 100");
+	
+	int guess = 0;
+	int larger = 0;
+	int smaller = 0;
+	int num = (rand() % 201 - 100);
+	printf("%d\n", num);
+	printf("Enter an integer > ");
 	scanf("%d", &guess);
 	
-	while (num != guess) {
-		if (num > guess) {
-			printf("Enter a larger integer");
-			smaller++;
-		} else {
-			printf("Enter a smaller integer");
+	
+	while (guess != num) {
+		if (num < guess) {
+			printf("Too small\n");
 			larger++;
+		} else {
+			printf("Too big\n");
+			smaller++;
 		}
+		printf("Enter an integer > ");
 		scanf("%d", &guess);
 	}
 	
-	printf("Number was %d, smaller is %d and larger is %d", num, smaller, larger);
-	return 0;
+	printf("Number %d, Larger %d, Smaller %d", num, larger, smaller);
 }

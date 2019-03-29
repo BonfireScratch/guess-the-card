@@ -9,7 +9,7 @@ struct node  {
 
 struct node* newNode(int data) { 
 	struct node* node = (struct node*) 
-								malloc(sizeof(struct node)); 
+	malloc(sizeof(struct node)); 
 	node->data = data; 
 	node->left = NULL; 
 	node->right = NULL; 

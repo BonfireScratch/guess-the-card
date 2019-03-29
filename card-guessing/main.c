@@ -2,7 +2,7 @@
 #include <stdlib.h> 
 #include <stdbool.h>
 
-void create_board(int pin[][4]) {
+void create_board(int pin[][4]) { // Creates the array
 	int i;
 	int j;
 	int randnum;
@@ -20,8 +20,7 @@ void create_board(int pin[][4]) {
 	}	
 }
 
-// Itaterate in the random number table to display the numbers
-void show_board(char table[][4]) {
+void show_board(char table[][4]) { // Iterates in the random number array to display the numbers
 	int x=0;
 	int y=0;
 	for (x=0; x<4; x++){
